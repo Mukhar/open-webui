@@ -3,7 +3,7 @@ namespaceOverride: ""
 
 ollama:
   # -- Automatically install Ollama Helm chart from https://otwld.github.io/ollama-helm/. Use [Helm Values](https://github.com/otwld/ollama-helm/#helm-values) to configure
-  enabled: true
+  enabled: false
   # -- If enabling embedded Ollama, update fullnameOverride to your desired Ollama name value, or else it will use the default ollama.name value from the Ollama chart
   fullnameOverride: "open-webui-ollama"
   # -- Example Ollama configuration with nvidia GPU enabled, automatically downloading a model, and deploying a PVC for model persistence
@@ -24,13 +24,13 @@ ollama:
 
 pipelines:
   # -- Automatically install Pipelines chart to extend Open WebUI functionality using Pipelines: https://github.com/open-webui/pipelines
-  enabled: true
+  enabled: false
   # -- This section can be used to pass required environment variables to your pipelines (e.g. Langfuse hostname)
   extraEnvVars: []
 
 tika:
   # -- Automatically install Apache Tika to extend Open WebUI
-  enabled: true
+  enabled: false
 
 # -- A list of Ollama API endpoints. These can be added in lieu of automatically installing the Ollama Helm chart, or in addition to it.
 ollamaUrls:
@@ -116,8 +116,8 @@ replicaCount: 1
 strategy: {}
 # -- Open WebUI image tags can be found here: https://github.com/open-webui/open-webui
 image:
-  repository: ghcr.io/open-webui/open-webui 
-  tag: "v0.6.43"
+  repository: gcr.io/devsentient-infra/custom/custom/open-webui
+  tag: ""
   pullPolicy: "IfNotPresent"
 
 serviceAccount:
@@ -128,8 +128,8 @@ serviceAccount:
 
 # -- Configure imagePullSecrets to use private registry
 # ref: <https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry>
-imagePullSecrets: []
-  # - name: image-pull-secret
+imagePullSecrets:
+  - name: image-pull-secret
 # imagePullSecrets:
 # - name: myRegistryKeySecretName
 
